@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="main">#005B41</color>
+    <color name="transition_color">#0E1513</color>
+    <color name="card_color">#C310181B</color>
+    <color name="title">#AEAEAE</color>
+
+    <!-- Charge level colors -->
+    <color name="green">#CB339F1A</color>
+    <color name="green_yellow">#9dbe11</color>
+    <color name="yellow">#cca420</color>
+    <color name="orange">#d26d32</color>
+    <color name="red">#cb1e1e</color>
+
+    <color name="widget_background">#39F5F5DC</color>
+</resources>

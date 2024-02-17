@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BatteryTracker</string>
+    <string name="live_widget">Widget Etkin/Pasif</string>
+    <string name="icon">icon</string>
+    <string name="charge">Şarj</string>
+    <string name="voltage">Voltaj</string>
+    <string name="temperature">Sıcaklık</string>
+    <string name="technology">Teknoloji</string>
+    <string name="health">Pil Sağlığı</string>
+    <string name="cycle">Döngü</string>
+</resources>

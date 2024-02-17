@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <!-- Battery Level Loaders -->
+    <com.mikhaellopez.circularfillableloaders.CircularFillableLoaders
+        android:id="@+id/cfl"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        app:cfl_border="true"
+        app:cfl_border_width="4dp"
+        app:cfl_progress="50"
+        app:cfl_wave_amplitude="0.02"
+        app:cfl_wave_color="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Battery Level Text -->
+    <TextView
+        android:id="@+id/batteryLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="64sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/cfl"
+        app:layout_constraintEnd_toEndOf="@id/cfl"
+        app:layout_constraintStart_toStartOf="@id/cfl"
+        app:layout_constraintTop_toTopOf="@id/cfl" />
+
+    <!-- Information Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="24dp"
+        app:cardBackgroundColor="@color/card_color"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cfl"
+        app:layout_constraintWidth_percent="0.9">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Guide Lines -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideH1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideH2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideH3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.75" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideV1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideV2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideV3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
+
+            <!-- Widget Service Switch -->
+            <TextView
+                android:id="@+id/liveWidget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/live_widget"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/guideH1"
+                app:layout_constraintStart_toStartOf="@id/guideV1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/widgetSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/guideH1"
+                app:layout_constraintEnd_toEndOf="@id/guideV3"
+                app:layout_constraintStart_toEndOf="@id/liveWidget"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/live_widget"
+                app:thumbTint="@drawable/switch_button"
+                app:trackTint="@drawable/switch_track" />
+
+            <!-- Charge -->
+            <ImageView
+                android:id="@+id/charge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/charge"
+                app:layout_constraintEnd_toStartOf="@id/chargeTitle"
+                app:layout_constraintStart_toStartOf="@id/guideV1"
+                app:layout_constraintTop_toTopOf="@id/guideH1" />
+
+            <TextView
+                android:id="@+id/chargeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/charge"
+                android:textAlignment="textStart"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:textColor="@color/title"
+                android:textSize="@dimen/status_title_text_size"
+                app:layout_constraintBottom_toBottomOf="@id/charge"
+                app:layout_constraintEnd_toEndOf="@id/guideV2"
+                app:layout_constraintStart_toEndOf="@id/charge"
+                app:layout_constraintTop_toTopOf="@id/guideH1"
+                app:layout_constraintVertical_bias="0.555" />
+
+            <TextView
+                android:id="@+id/chargeTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="-24dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Şarj oluyor"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/guideH2"
+                app:layout_constraintEnd_toEndOf="@id/guideV2"
+                app:layout_constraintStart_toStartOf="@id/guideV1"
+                app:layout_constraintTop_toBottomOf="@id/charge" />
+
+            <!-- Voltage -->
+            <ImageView
+                android:id="@+id/voltage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/voltage"
+                app:layout_constraintEnd_toStartOf="@id/voltageTitle"
+                app:layout_constraintStart_toStartOf="@id/guideV2"
+                app:layout_constraintTop_toTopOf="@id/guideH1" />
+
+            <TextView
+                android:id="@+id/voltageTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/voltage"
+                android:textAlignment="textStart"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:textColor="@color/title"
+                android:textSize="@dimen/status_title_text_size"
+                app:layout_constraintBottom_toBottomOf="@id/voltage"
+                app:layout_constraintEnd_toEndOf="@id/guideV3"
+                app:layout_constraintStart_toEndOf="@id/voltage"
+                app:layout_constraintTop_toTopOf="@id/guideH1" />
+
+            <TextView
+                android:id="@+id/voltageTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="-24dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="5 V"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/guideH2"
+                app:layout_constraintEnd_toEndOf="@id/guideV3"
+                app:layout_constraintStart_toStartOf="@id/guideV2"
+                app:layout_constraintTop_toBottomOf="@id/voltage" />
+
+            <!-- Temperature -->
+            <ImageView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/temperature"
+                app:layout_constraintEnd_toStartOf="@id/temperatureTitle"
+                app:layout_constraintStart_toStartOf="@id/guideV1"
+                app:layout_constraintTop_toTopOf="@id/guideH2" />
+
+            <TextView
+                android:id="@+id/temperatureTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/temperature"
+                android:textAlignment="textStart"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:textColor="@color/title"
+                android:textSize="@dimen/status_title_text_size"
+                app:layout_constraintBottom_toBottomOf="@id/temperature"
+                app:layout_constraintEnd_toEndOf="@id/guideV2"
+                app:layout_constraintStart_toEndOf="@id/temperature"
+                app:layout_constraintTop_toTopOf="@id/guideH2" />
+
+            <TextView
+                android:id="@+id/temperatureTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="-24dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="20 °C"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/guideH3"
+                app:layout_constraintEnd_toEndOf="@id/guideV2"
+                app:layout_constraintStart_toStartOf="@id/guideV1"
+                app:layout_constraintTop_toBottomOf="@id/temperature" />
+
+            <!-- Technology -->
+            <ImageView
+                android:id="@+id/technology"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/technology"
+                app:layout_constraintEnd_toStartOf="@id/technologyTitle"
+                app:layout_constraintStart_toStartOf="@id/guideV2"
+                app:layout_constraintTop_toTopOf="@id/guideH2" />
+
+            <TextView
+                android:id="@+id/technologyTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/technology"
+                android:textAlignment="textStart"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:textColor="@color/title"
+                android:textSize="@dimen/status_title_text_size"
+                app:layout_constraintBottom_toBottomOf="@id/technology"
+                app:layout_constraintEnd_toEndOf="@id/guideV3"
+                app:layout_constraintStart_toEndOf="@id/technology"
+                app:layout_constraintTop_toTopOf="@id/guideH2" />
+
+            <TextView
+                android:id="@+id/technologyTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="-24dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Li-ion"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/guideH3"
+                app:layout_constraintEnd_toEndOf="@id/guideV3"
+                app:layout_constraintStart_toStartOf="@id/guideV2"
+                app:layout_constraintTop_toBottomOf="@id/technology" />
+
+            <!-- Health -->
+            <ImageView
+                android:id="@+id/health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/health"
+                app:layout_constraintEnd_toStartOf="@id/healthTitle"
+                app:layout_constraintStart_toStartOf="@id/guideV1"
+                app:layout_constraintTop_toTopOf="@id/guideH3" />
+
+            <TextView
+                android:id="@+id/healthTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/health"
+                android:textAlignment="textStart"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:textColor="@color/title"
+                android:textSize="@dimen/status_title_text_size"
+                app:layout_constraintBottom_toBottomOf="@id/health"
+                app:layout_constraintEnd_toEndOf="@id/guideV2"
+                app:layout_constraintStart_toEndOf="@id/health"
+                app:layout_constraintTop_toTopOf="@id/guideH3" />
+
+            <TextView
+                android:id="@+id/healthTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="-24dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="İyi"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideV2"
+                app:layout_constraintStart_toStartOf="@id/guideV1"
+                app:layout_constraintTop_toBottomOf="@id/health" />
+
+            <!-- Battery Cycyle -->
+            <ImageView
+                android:id="@+id/cycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/cycle"
+                app:layout_constraintEnd_toStartOf="@id/cycleTitle"
+                app:layout_constraintStart_toStartOf="@id/guideV2"
+                app:layout_constraintTop_toTopOf="@id/guideH3" />
+
+            <TextView
+                android:id="@+id/cycleTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cycle"
+                android:textAlignment="textStart"
+                android:layout_marginStart="@dimen/status_info_margin_start"
+                android:textColor="@color/title"
+                android:textSize="@dimen/status_title_text_size"
+                app:layout_constraintBottom_toBottomOf="@id/cycle"
+                app:layout_constraintEnd_toEndOf="@id/guideV3"
+                app:layout_constraintStart_toEndOf="@id/cycle"
+                app:layout_constraintTop_toTopOf="@id/guideH3" />
+
+            <TextView
+                android:id="@+id/cycleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/status_info_margin_start"
+                android:layout_marginTop="-24dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="50"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/status_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideV3"
+                app:layout_constraintStart_toStartOf="@id/guideV2"
+                app:layout_constraintTop_toBottomOf="@id/cycle" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
