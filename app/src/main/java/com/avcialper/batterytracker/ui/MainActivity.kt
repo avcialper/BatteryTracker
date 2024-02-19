@@ -22,7 +22,6 @@ import com.avcialper.batterytracker.service.BatteryService
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var isServiceOpen = false
     private val viewModel: MainViewModel by viewModels()
     private lateinit var batteryBroadcastReceiver: BatteryBroadcastReceiver
 
@@ -95,7 +94,7 @@ class MainActivity : AppCompatActivity() {
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-            if (it != true)
-                Toast.makeText(this, "Bildirim izni gereklidir!", Toast.LENGTH_LONG).show()
+            if (it)
+                println("permission granted")
         }
 }

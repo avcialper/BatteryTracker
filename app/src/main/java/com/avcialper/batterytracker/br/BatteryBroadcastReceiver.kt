@@ -66,7 +66,7 @@ class BatteryBroadcastReceiver(private val viewModel: MainViewModel?) : Broadcas
         val batteryIsCharging = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -10)
         val batteryTemperature =
             intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -10).div(10)
-        val batteryVoltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -10)
+        val batteryVoltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -10).div(1000)
         val batteryTechnology = intent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY)
         val batteryHealth = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, -10)
         val batteryCycleCount =
