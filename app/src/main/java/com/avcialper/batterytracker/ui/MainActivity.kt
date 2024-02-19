@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +17,7 @@ import com.avcialper.batterytracker.R
 import com.avcialper.batterytracker.br.BatteryBroadcastReceiver
 import com.avcialper.batterytracker.databinding.ActivityMainBinding
 import com.avcialper.batterytracker.model.Widget
+import com.avcialper.batterytracker.service.BatteryService
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,9 +35,10 @@ class MainActivity : AppCompatActivity() {
         initUI()
         checkNotificationPermission()
         startBatteryReceiver()
-        isServiceOpen = checkServices()
+        checkServices()
     }
 
+    // To check the current battery status
     private fun startBatteryReceiver() {
         batteryBroadcastReceiver = BatteryBroadcastReceiver(viewModel)
         val filter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
@@ -48,11 +51,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Is service on check
-    private fun checkServices(): Boolean {
+    private fun checkServices() {
         val services = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val isOpen = services.getRunningServices(1).isNotEmpty()
-        Widget.widgetIsOpen = isOpen
-        return isOpen
+        Widget.serviceIsOpen = isOpen
+
+        // Service is closed
+        if (!isOpen) {
+            val intent = Intent(this, BatteryService::class.java)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                startForegroundService(intent)
+            else
+                startService(intent)
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -71,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // To use the service, the service needs notification permission
     private fun checkNotificationPermission() {
         if (ContextCompat.checkSelfPermission(
                 this.applicationContext,

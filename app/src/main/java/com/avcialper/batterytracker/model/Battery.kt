@@ -1,7 +1,5 @@
 package com.avcialper.batterytracker.model
 
-import android.graphics.Color
-
 data class Battery(
     var level: Int = 0,
     var isCharging: String = "",

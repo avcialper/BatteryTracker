@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/widget_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:theme="@style/Theme.BatteryTracker.AppWidgetContainer">
+
+    <TextView
+        android:id="@+id/widgetBatteryLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_charge"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/widgetChargeIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/widget_description"
+        android:src="@drawable/widget_charging"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/renewIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/widget_renew_description"
+        android:src="@drawable/renew_icon"
+        android:visibility="gone" />
+
+</LinearLayout>

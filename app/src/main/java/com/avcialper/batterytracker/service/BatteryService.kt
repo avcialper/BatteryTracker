@@ -4,16 +4,17 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
-import android.content.BroadcastReceiver
+import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
+import android.view.View
+import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.avcialper.batterytracker.R
 import com.avcialper.batterytracker.br.BatteryBroadcastReceiver
-import com.avcialper.batterytracker.ui.MainViewModel
 
 class BatteryService : Service() {
 
@@ -36,6 +37,22 @@ class BatteryService : Service() {
 
     override fun onDestroy() {
         unregisterReceiver(batteryBroadcastReceiver)
+
+        // Change widget's visibility
+        val appWidgetManager = AppWidgetManager.getInstance(this)
+        val views = RemoteViews(this.packageName, R.layout.battery_tracker_widget)
+        views.setViewVisibility(R.id.widgetBatteryLevel, View.GONE)
+        views.setViewVisibility(R.id.widgetChargeIcon, View.GONE)
+        views.setViewVisibility(R.id.renewIcon, View.VISIBLE)
+
+        val ids = this.getSharedPreferences(this.packageName, Context.MODE_PRIVATE)
+            .getStringSet("widgetIds", HashSet<String>())
+
+        ids?.let { idList ->
+            for (id in idList)
+                appWidgetManager.updateAppWidget(id.toInt(), views)
+        }
+
         super.onDestroy()
     }
 

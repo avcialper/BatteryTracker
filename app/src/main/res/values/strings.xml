@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">BatteryTracker</string>
-    <string name="live_widget">Widget Etkin/Pasif</string>
+    <string name="app_name">Battery Tracker</string>
+    <string name="live_widget">Batarya Bilgileri</string>
     <string name="icon">icon</string>
     <string name="charge">Şarj</string>
     <string name="voltage">Voltaj</string>
@@ -8,4 +8,11 @@
     <string name="technology">Teknoloji</string>
     <string name="health">Pil Sağlığı</string>
     <string name="cycle">Döngü</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">Anlık pil yüzdesi.</string>
+    <string name="my_charge">ŞARJIM</string>
+    <string name="widget_description">Şarj olma resmi</string>
+    <string name="widget_renew_description">Widget ayarlarını yenile</string>
+    <string name="widget_icon">Widget logosu</string>
 </resources>
