@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = getColor(R.color.black)
 
         initUI()
-        checkNotificationPermission()
         startBatteryReceiver()
         checkServices()
     }
@@ -80,21 +79,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    // To use the service, the service needs notification permission
-    private fun checkNotificationPermission() {
-        if (ContextCompat.checkSelfPermission(
-                this.applicationContext,
-                android.Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-        }
-    }
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-            if (it)
-                println("permission granted")
-        }
 }
