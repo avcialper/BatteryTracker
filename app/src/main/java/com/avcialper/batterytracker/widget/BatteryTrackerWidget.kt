@@ -29,8 +29,7 @@ class BatteryTrackerWidget : AppWidgetProvider() {
         }
 
         for (id in appWidgetIds) {
-            if (!ids.contains(id.toString()))
-                ids.add(id.toString())
+            ids.add(id.toString())
         }
 
         editor.putStringSet("widgetIds", ids)
@@ -64,8 +63,7 @@ class BatteryTrackerWidget : AppWidgetProvider() {
 
             appWidgetIds?.let { idList ->
                 for (id in idList) {
-                    if (ids.contains(id.toString()))
-                        ids.remove(id.toString())
+                    ids.remove(id.toString())
                 }
             }
 
